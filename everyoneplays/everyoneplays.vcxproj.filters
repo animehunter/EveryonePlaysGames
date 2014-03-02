@@ -52,5 +52,8 @@
     <ClInclude Include="libircclient\include\libircclient.h">
       <Filter>libircclient\include</Filter>
     </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

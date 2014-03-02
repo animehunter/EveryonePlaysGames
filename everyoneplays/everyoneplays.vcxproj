@@ -96,6 +96,7 @@
     <ClInclude Include="libircclient\src\dcc.h" />
     <ClInclude Include="libircclient\src\params.h" />
     <ClInclude Include="libircclient\src\session.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
