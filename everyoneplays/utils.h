@@ -80,11 +80,17 @@ struct CircularQueue
 
 struct KeyPress
 {
+    // for key presses
     CommandToken cmd;
     int presses;
     int x;
     int y;
     int is_active;
+
+    //signal the emulator to reload mutex+memory
+    int require_reload;
+    // tell the score its safe to quit
+    int ready_for_quit;
 };
 
 

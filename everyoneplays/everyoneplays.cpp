@@ -815,6 +815,9 @@ void on_exit_cleanup()
         gctx.backupfile->seekp(0);
         *gctx.backupfile << gctx.seconds << std::endl;
     }
+    int retries = 0;
+    gctx.keypressQ->require_reload = 1;
+    while (!gctx.keypressQ->ready_for_quit && retries < 5000) { Sleep(1); retries++; }
     if (gctx.keypressQ)
     {
         close_shared_mem(gctx.maphandle, gctx.keypressQ);
@@ -855,6 +858,7 @@ int main(int argc, char **argv)
         printf("Failed to create shared mem");
         return -1;
     }
+    memset(gctx.keypressQ, 0, sizeof(KeyPress));
 
     // initialize critical sections
     InitializeCriticalSection(&gctx.voteCS);
