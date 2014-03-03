@@ -84,9 +84,8 @@ struct KeyPress
     int presses;
     int x;
     int y;
+    int is_active;
 };
-
-typedef CircularQueue<KeyPress, 1200> KeyPressQueueShared;
 
 
 HANDLE shared_mutex_create(const char *name)
