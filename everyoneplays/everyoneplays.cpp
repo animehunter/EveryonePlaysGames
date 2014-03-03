@@ -841,6 +841,22 @@ int main(int argc, char **argv)
         std::string cmd = parse_cmd(argv[1], votes, presses, x, y);
         printf("cmd=%s, votes=%d, presses=%d, x=%d, y=%d\n", cmd.c_str(), votes, presses, x, y);
         printf("valid=%p\n", ctx.valid_cmds.find(cmd) != ctx.valid_cmds.cend() ? 1 : 0);
+        HANDLE handle;
+        KeyPress *k = (KeyPress*)create_shared_mem(APP_KEY_MEM, sizeof(KeyPress), &handle);
+        if (k)
+        {
+            auto validCmdIt = gctx.valid_cmds.find(cmd);
+            if (validCmdIt != gctx.valid_cmds.cend())
+            {
+                CommandToken cmdtok = validCmdIt->second;
+                k->cmd = cmdtok;
+                k->presses = presses;
+                k->x = x;
+                k->y = y;
+                k->is_active = 1;
+            }
+            close_shared_mem(k, handle);
+        }
         return 0;
     }
     
